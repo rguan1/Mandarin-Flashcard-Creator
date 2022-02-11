@@ -6,3 +6,4 @@ __pycache__/
 *.py[cod]
 
 quizlet_txt/
+cedict_ts.u8
