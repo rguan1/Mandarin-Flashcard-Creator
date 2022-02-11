@@ -12,7 +12,7 @@
 
 #open CEDICT file
 
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 
 list_of_dicts = []
 
@@ -70,7 +70,6 @@ def main():
 
     return list_of_dicts
 
-
     #If you want to save to a database as JSON objects, create a class Word in the Models file of your Django project:
 
     # print("Saving to database (this may take a few minutes) . . .")
@@ -82,8 +81,8 @@ def main():
 def simplified_to_pinyin_english():
     Pinyin_English = namedtuple('Pinyin_English', 'pinyin en')
     list_of_dicts = main()
-    character_dictionary = {}
+    character_dictionary = defaultdict(list)
     for word in list_of_dicts:
-        character_dictionary[word['simplified']] = Pinyin_English(word['pinyin'], word['english'])
+        character_dictionary[word['simplified']].append(Pinyin_English(word['pinyin'], word['english']))
     
     return character_dictionary
